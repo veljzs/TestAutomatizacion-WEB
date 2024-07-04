@@ -33,21 +33,18 @@ public class StoreCarritoPage {
     public String getMontoIndividual (){
         WebElement montoIndividual= driver.findElement(precioActualUnidad);
         String montoIndividualFinal= montoIndividual.getText().replace("S/","");
-        System.out.println(montoIndividualFinal.trim());
         return montoIndividualFinal.trim();
 
     }
     public String getMontoFinal (){
         WebElement montoFinal= driver.findElement(precioFinalDeCompra);
         String montoFinalFinal= montoFinal.getText().replace("S/","");
-        System.out.println(montoFinalFinal.trim());
         return montoFinalFinal.trim();
 
     }
     public String getUnidades (){
         WebElement unidades= driver.findElement(unidadesCompradas);
         String unidadesFinal= unidades.getText().replace("artículos","");
-        System.out.println(unidadesFinal.trim());
         return unidadesFinal.trim();
     }
 }

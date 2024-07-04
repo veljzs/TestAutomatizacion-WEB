@@ -8,6 +8,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -39,21 +41,25 @@ public class StoreStepdefs {
     public void estoyEnLaPáginaDeLaTienda() {
         store = new StoreSteps(driver);
         store.navegarA("https://qalab.bensg.com/store/pe/");
+        screenShot();
     }
 
     @And("me logueo con mi correo electronico {string} y clave {string}")
     public void meLogueoConMiCorreoElectronicoYClave(String correo, String clave) {
         store.hacerLogin(correo, clave);
+        screenShot();
     }
 
     @When("navego a la categoria Clothes y subcategoria Men")
     public void navegoALaCategoriaClothesYSubcategoriaMen() {
         store.irASubCategoria();
+        screenShot();
     }
 
     @And("agrego {int} unidades del primer producto al carrito")
     public void agregoUnidadesDelPrimerProductoAlCarrito(int arg0) {
         store.AgregarUnidades(arg0);
+        screenShot();
     }
 
     @Then("valido en el popup la confirmación del producto agregado")
@@ -70,15 +76,24 @@ public class StoreStepdefs {
     @When("finalizo la compra")
     public void finalizoLaCompra() {
         store.FinalizarCompraModal();
+        screenShot();
     }
 
-    @Then("valido el titulo de la pagina del {String}")
+    @Then("valido el titulo de la pagina del {string}")
     public void validoElTituloDeLaPaginaDel(String arg0) {
         store.validacionTituloCarrito(arg0);
     }
+
 
     @And("vuelvo a validar el calculo de precios en el carrito")
     public void vuelvoAValidarElCalculoDePreciosEnElCarrito() {
         store.validacionCalculoDePreciosCarrito();
     }
+
+    public void screenShot(){
+        byte[] evidencia = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        this.scenario.attach(evidencia, "image/png", "evidencias");
+    }
+
+
 }

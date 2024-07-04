@@ -96,7 +96,6 @@ public class StoreItemPage {
     public String getUnidades (){
         WebElement unidades= driver.findElement(unidadesCompradas);
         String unidadesFinal= unidades.getText().replace("Cantidad: ","");
-        System.out.println(unidadesFinal.trim());
         return unidadesFinal.trim();
     }
 
